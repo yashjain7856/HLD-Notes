@@ -1,7 +1,7 @@
 # Microservices Design Patterns
 ## Part 1: Introduction and Decomposition Pattern
 
-### Introduction - Part 1
+### Introduction
 
 - This is part 3 of the video series on high-level design
 - Previous 2 videos already covered

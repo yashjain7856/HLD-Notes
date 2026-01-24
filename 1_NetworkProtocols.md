@@ -1,11 +1,13 @@
-### *Introduction:*
+# Network Protocols
+
+## *Introduction:*
 
 - This is the first video in a series on high-level design, focusing on network protocols.
 - Explains the role of network protocols in communication between computers.
 - Introduces the concept of client-server and peer-to-peer models.
 - Provides insights on choosing the right protocol for specific applications like WhatsApp, Google Meet, etc.
 
-### *Network Protocols:*
+## *Network Protocols:*
 
 - *Definition:* Network protocols define the rules and regulations for communication between systems over a network.
 - *OSI Model:* Refers to the Open Systems Interconnection Model, a layered architecture for network communication (not covered in detail).
@@ -13,7 +15,7 @@
     - *Application Layer:* Handles user-facing communication (e.g., web browsing, email).
     - *Transport Layer:* Manages reliable data transfer between applications (e.g., TCP/UDP).
 
-### *Application Layer Protocols:*
+## *Application Layer Protocols:*
 
 - *Client-Server Model:*
     - *Client:* Initiates requests (e.g., web browser).
@@ -49,7 +51,7 @@
     - Receiving and reading emails.
     - Allows access to emails from multiple devices.
 
-### *Transport Layer Protocols:*
+## *Transport Layer Protocols:*
 
 - *TCP (Transmission Control Protocol):*
     - *Key Points:*
@@ -65,7 +67,7 @@
         - Faster and more efficient than TCP.
     - *Use Case:* Live streaming, video calling, applications where some data loss is acceptable.
 
-### *Key Takeaways:*
+## *Key Takeaways:*
 
 - *Understanding network protocols is crucial for designing distributed systems.*
 - *Client-server and peer-to-peer models are fundamental architectures for communication.*

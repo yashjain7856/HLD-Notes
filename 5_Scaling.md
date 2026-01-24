@@ -1,9 +1,11 @@
-### *Introduction:*
+# Scaling from zero to million users
+
+## *Introduction:*
 
 - This video is part of a series on system design concepts, focusing on scaling from 0 users to 1 million users.
 - Covers various concepts like sharding, horizontal and vertical scaling, load balancing, caching, and messaging queues.
 
-### *Steps for Scaling:*
+## *Steps for Scaling:*
 
 1. *Single Server:*
     - Basic setup with a single server for the application, database, and client.

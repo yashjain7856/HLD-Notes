@@ -1,4 +1,7 @@
-### *Introduction - Part 2*
+# Microservices Design Patterns
+## Part 1: Introduction and Decomposition Pattern
+
+### *Introduction*
 
 - This video is a continuation of Part 1, which discussed the "Decompose by Medium Position Pattern".
 - The video focuses on three important patterns:
