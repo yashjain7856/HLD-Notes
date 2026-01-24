@@ -1,0 +1,61 @@
+<h1>CAP Theorem</h1>
+<h2>Introduction:</h2>
+<ul>
+<li>Discusses the concept of CAP Theorem (Consistency, Availability, Partition Tolerance) and its relevance in distributed systems.</li>
+<li>Emphasizes the importance of considering CAP constraints early in system design to avoid costly changes later.</li>
+</ul>
+<h2>CAP Theorem:</h2>
+<ul>
+<li><strong>CAP:</strong> Stands for Consistency, Availability, Partition Tolerance.</li>
+<li><strong>Desired Properties of Distributed Systems:</strong> These three properties are desirable in a distributed system.</li>
+<li><strong>CAP Trade-off:</strong> You cannot have all three properties simultaneously. You must choose two out of the three.</li>
+<li><strong>Example:</strong><ul>
+<li>Consider a distributed database with nodes in India and the US.</li>
+<li>A user's data is replicated across both locations.</li>
+<li>A distributed system should ideally be consistent (same data everywhere), available (responding to requests), and tolerant to partitions (network disruptions).</li>
+</ul>
+</li>
+</ul>
+<h2>Understanding Each Property:</h2>
+<ul>
+<li><strong>Consistency:</strong> Ensures that all nodes have the same, up-to-date data at any given time.</li>
+<li><strong>Availability:</strong> Guarantees that every request is successfully processed by at least one node.</li>
+<li><strong>Partition Tolerance:</strong> Allows the system to continue functioning even if communication between nodes is disrupted.</li>
+</ul>
+<h2>Why CAP Properties Cannot Co-Exist:</h2>
+<ul>
+<li><strong>Case 1: CA (Consistency and Availability) - Not possible with Partition Tolerance</strong><ul>
+<li><strong>Scenario:</strong> A partition occurs, separating nodes A and B.</li>
+<li><strong>Conflict:</strong> Node A writes updated data, but node B cannot access it due to the partition.</li>
+<li><strong>Result:</strong> Inconsistency between nodes.</li>
+</ul>
+</li>
+<li><strong>Case 2: CP (Consistency and Partition Tolerance) - Not possible with Availability</strong><ul>
+<li><strong>Scenario:</strong> A partition occurs, separating nodes A and B.</li>
+<li><strong>Strategy:</strong> To maintain consistency, only one node (A) is allowed to process writes.</li>
+<li><strong>Result:</strong> Node B becomes unavailable for writes during the partition.</li>
+</ul>
+</li>
+<li><strong>Case 3: AP (Availability and Partition Tolerance) - Not possible with Consistency</strong><ul>
+<li><strong>Scenario:</strong> A partition occurs, separating nodes A and B.</li>
+<li><strong>Strategy:</strong> To maintain availability, both nodes can process writes.</li>
+<li><strong>Result:</strong> Potential for inconsistent data between nodes.</li>
+</ul>
+</li>
+</ul>
+<h2>CAP Trade-off in Real-world Systems:</h2>
+<ul>
+<li><strong>Importance of Partition Tolerance:</strong> In today's distributed systems, network disruptions are common.</li>
+<li><strong>Choosing between CP and AP:</strong><ul>
+<li><strong>CP:</strong> Choose this option for systems where consistency is critical, even if it means some temporary downtime.</li>
+<li><strong>AP:</strong> Choose this option for systems where availability is paramount, even if it means some data inconsistency.</li>
+</ul>
+</li>
+</ul>
+<h2>Key Takeaways:</h2>
+<ul>
+<li>Understanding CAP is crucial for effective distributed system design.</li>
+<li>Early consideration of CAP constraints can prevent costly changes later.</li>
+<li>The choice between CP and AP depends on the specific needs of your system.</li>
+<li>Partition tolerance is a key factor in modern distributed systems.</li>
+</ul>

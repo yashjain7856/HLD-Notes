@@ -9,16 +9,9 @@
 
 ### How it works?
 
-- Given N servers, we assign data using:
-```
-    Server Index=Hash(input) mod N
-```
+- Given N servers, we assign data using: `ServerIndex = Hash(input) mod N`
 
-- Example:
-```
-    If N = 3 servers and we receive input X, we compute:
-    X mod 3
-```
+- Example: If N = 3 servers and we receive input X, we compute: `X mod 3`
 - The result determines which of the 3 servers will handle the request.
 
 ### Challenges of Modulo-Based Hashing:

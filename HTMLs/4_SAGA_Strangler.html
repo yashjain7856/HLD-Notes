@@ -1,0 +1,121 @@
+<h1>Microservices</h1>
+<h2>Part 2: SAGA and Strangler Design Patterns</h2>
+<h3>Introduction</h3>
+<ul>
+<li>This video is a continuation of Part 1, which discussed the "Decompose by Medium Position Pattern".</li>
+<li>The video focuses on three important patterns:<ul>
+<li><strong>Strangler Pattern:</strong> Used for <strong>refactoring</strong> a monolithic service into microservices.</li>
+<li><strong>Saga Pattern:</strong> Solves the problem of <strong>distributed transactions</strong> across multiple databases.</li>
+<li><strong>CQRS (Command Query Responsibility Segregation):</strong> Separates command (write) and query (read) operations for improved performance and scalability.</li>
+</ul>
+</li>
+</ul>
+<h3>Strangler Pattern:</h3>
+<ul>
+<li><strong>Purpose:</strong> Gradually refactoring a monolithic application into microservices.</li>
+<li><strong>How it Works:</strong><ul>
+<li>A "controller" is introduced to handle requests.</li>
+<li>Initially, the controller forwards all traffic to the monolithic application.</li>
+<li>Gradually, specific functionalities are extracted into microservices, and the controller routes traffic to them.</li>
+<li>As more functionalities are migrated, the controller forwards less traffic to the monolithic application, eventually strangling it.</li>
+</ul>
+</li>
+<li><strong>Advantages:</strong><ul>
+<li>Minimizes disruption to existing services.</li>
+<li>Allows for a gradual transition to microservices.</li>
+</ul>
+</li>
+<li><strong>Example:</strong><ul>
+<li>Imagine a monolithic e-commerce website being refactored into microservices.</li>
+<li>The controller initially directs all traffic to the monolithic website.</li>
+<li>Gradually, functionalities like order placement, inventory management, and payment processing are moved to individual microservices.</li>
+<li>The controller gradually routes more traffic to these microservices, eventually reducing the reliance on the monolithic application.</li>
+</ul>
+</li>
+</ul>
+<h3>Data Management in Microservices:</h3>
+<ul>
+<li><strong>Two Approaches:</strong><ul>
+<li><strong>Database for Each Individual Service:</strong> Each microservice has its own dedicated database, promoting autonomy and isolation.</li>
+<li><strong>Shared Database:</strong> All microservices share a single database, simplifying data access but potentially leading to complexities.</li>
+</ul>
+</li>
+<li><strong>Why Database per Service is Preferred:</strong><ul>
+<li><strong>Scalability:</strong> Allows for independent scaling of individual services without impacting others.</li>
+<li><strong>Isolation:</strong> Changes in one service's database don't affect others.</li>
+<li><strong>Technology Flexibility:</strong> Services can choose different databases based on their specific needs.</li>
+</ul>
+</li>
+<li><strong>Advantages of Shared Database</strong><ul>
+<li>Join Query</li>
+<li>Transactional Property (ACID)</li>
+</ul>
+</li>
+<li><strong>Drawbacks of Shared Database:</strong><ul>
+<li><strong>Performance Bottlenecks:</strong> Increased contention and performance issues as more services access the same database.</li>
+<li><strong>Complexity:</strong> Managing dependencies and ensuring consistency across multiple services becomes difficult.</li>
+<li><strong>Limited Scalability:</strong> Scaling the entire database is necessary, even if only one service needs more resources.</li>
+</ul>
+</li>
+</ul>
+<h3>SAGA Pattern:</h3>
+<ul>
+<li><strong>Purpose:</strong> Managing distributed transactions across multiple databases, ensuring data consistency even if some operations fail.</li>
+<li><strong>How it Works:</strong><ul>
+<li>A sequence of local transactions is executed within each participating microservice.</li>
+<li>Each transaction updates the database and publishes an event.</li>
+<li>Subsequent transactions listen to these events and continue the process.</li>
+<li>In case of failure, compensation events are published to undo completed operations and maintain consistency.</li>
+</ul>
+</li>
+<li><strong>Types of Sagas:</strong><ul>
+<li><strong>Choreography:</strong> Each service manages its own transactions and listens to events from other services.</li>
+<li><strong>Orchestration:</strong> A centralized orchestrator manages the transaction flow and handles compensation logic.</li>
+</ul>
+</li>
+<li><strong>Example:</strong><ul>
+<li>An order processing saga involving services for order creation, inventory management, and payment processing.</li>
+<li>If the payment service fails, compensation events are triggered to cancel the order and update inventory.</li>
+</ul>
+</li>
+<li><strong>Advantages:</strong><ul>
+<li>Guarantees data consistency in distributed systems.</li>
+<li>Provides a mechanism for handling failures and rollbacks.</li>
+<li>Allows for flexibility in service interactions.</li>
+</ul>
+</li>
+<li><strong>Disadvantages:</strong><ul>
+<li>Increased complexity compared to local transactions.</li>
+<li>Requires careful design and implementation to ensure correctness.</li>
+</ul>
+</li>
+<li><strong>Interview Question Example:</strong><ul>
+<li>Explain how you would handle a transaction involving transferring money between two users in a microservice architecture.</li>
+</ul>
+</li>
+</ul>
+<h3>CQRS Pattern (Command Query Request Segregation):</h3>
+<ul>
+<li><strong>Purpose:</strong> Separating read (query) operations from write (command) operations for better performance and scalability.</li>
+<li><strong>How it Works:</strong><ul>
+<li>The system maintains separate models for read and write operations.</li>
+<li>Write operations are performed through commands, updating the write model.</li>
+<li>Read operations access the read model, which can be optimized for fast retrieval.</li>
+</ul>
+</li>
+<li><strong>Advantages:</strong><ul>
+<li><strong>Performance Improvement:</strong> Optimized read models can handle queries more efficiently.</li>
+<li><strong>Scalability:</strong> Read and write models can be scaled independently based on their specific needs.</li>
+<li><strong>Flexibility:</strong> Allows for different data structures and query languages for read and write operations.</li>
+</ul>
+</li>
+<li><strong>Example:</strong><ul>
+<li>A blog application where write operations are performed on a relational database, while read operations access a denormalized view optimized for fast search.</li>
+</ul>
+</li>
+<li><strong>Challenges:</strong><ul>
+<li>Maintaining consistency between the read and write models.</li>
+<li>Ensuring the read model is up-to-date with changes in the write model.</li>
+</ul>
+</li>
+</ul>

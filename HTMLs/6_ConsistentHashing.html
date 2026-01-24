@@ -1,0 +1,111 @@
+<h1>Consistent Hashing</h1>
+<h2>Understanding Hash Functions</h2>
+<ul>
+<li><p>A hash function takes an input and maps it to a specific output.</p>
+</li>
+<li><p>It is commonly used for distributing data efficiently in load balancing, caching, and sharding.</p>
+</li>
+</ul>
+<h2>Normal Hashing (Modulo-Based Hashing)</h2>
+<h3>How it works?</h3>
+<ul>
+<li><p>Given N servers, we assign data using: <code>ServerIndex = Hash(input) mod N</code></p>
+</li>
+<li><p>Example: If N = 3 servers and we receive input X, we compute: <code>X mod 3</code></p>
+</li>
+<li><p>The result determines which of the 3 servers will handle the request.</p>
+</li>
+</ul>
+<h3>Challenges of Modulo-Based Hashing:</h3>
+<ul>
+<li><p>When a new server is added, we now mod by (N+1) instead of N.</p>
+</li>
+<li><p>This causes cache misses because:</p>
+<ul>
+<li>Data previously mapped to a specific server is now mapped to a different one.</li>
+</ul>
+</li>
+<li><p>Rebalancing is required to reassign data correctly.</p>
+</li>
+</ul>
+<h2>Problem of Rebalancing</h2>
+<ul>
+<li><p>Rebalancing means redistributing data when servers are added or removed.</p>
+<p>  <strong>Issue:</strong> With normal hashing, most of the data must be reassigned.</p>
+<p>  <strong>Solution:</strong> Consistent Hashing minimizes rebalancing.</p>
+</li>
+</ul>
+<h2>Introduction to Consistent Hashing</h2>
+<ul>
+<li><p>The goal of consistent hashing is to minimize the number of keys (data) that need to be reassigned when a server is added or removed.</p>
+</li>
+<li><p>In a well-designed consistent hashing system, only (1/N) of the total data needs to be reassigned when a server is added or removed.</p>
+</li>
+</ul>
+<h3>Key Properties of Consistent Hashing</h3>
+<h4>Minimal Rebalancing:</h4>
+<ul>
+<li><p>Only 1/N of the total data needs reassignment when servers change.</p>
+</li>
+<li><p>Formula for rebalancing: <code>1/N × (Total Number of Records)</code>, where N is the number of servers.</p>
+</li>
+</ul>
+<h4>Works Well for Dynamic Scaling:</h4>
+<ul>
+<li><p>Suitable when servers are frequently added or removed.</p>
+</li>
+<li><p>Ideal for load balancing and database sharding.</p>
+</li>
+</ul>
+<h2>How Consistent Hashing Works</h2>
+<h3>Virtual Ring Structure</h3>
+<ul>
+<li><p>Servers and data are arranged on a circular (virtual) hash ring.</p>
+</li>
+<li><p>Example: A ring with 12 positions.</p>
+</li>
+<li><p>Each server is mapped to specific points on the ring.</p>
+</li>
+</ul>
+<h3>Data Assignment</h3>
+<ul>
+<li><p>A request (or key) is mapped to a position on the ring.</p>
+</li>
+<li><p>The request is assigned to the next available server in a clockwise direction.</p>
+</li>
+</ul>
+<h3>Adding and Removing Servers</h3>
+<ul>
+<li><p>When a new server is added, it takes over responsibility for a small portion of the ring.</p>
+</li>
+<li><p>Only the affected portion of data is reassigned (instead of all data, as in normal hashing).</p>
+</li>
+</ul>
+<h2>Virtual Nodes in Consistent Hashing</h2>
+<p><strong>Issue:</strong> Uneven data distribution if servers are not evenly spaced.</p>
+<p><strong>Solution:</strong> Virtual Nodes</p>
+<ul>
+<li><p>Instead of placing one server at a single location, each server is mapped to multiple points on the ring.</p>
+</li>
+<li><p>This ensures a balanced distribution of requests across servers.</p>
+</li>
+</ul>
+<h2>Use Cases of Consistent Hashing</h2>
+<h3>Load Balancing</h3>
+<ul>
+<li><p>Distributes incoming requests evenly across multiple app servers.</p>
+</li>
+<li><p>Minimizes disruption when scaling up or down.</p>
+</li>
+</ul>
+<h3>Distributed Caching</h3>
+<ul>
+<li><p>Used in Redis, Memcached to efficiently map data to cache nodes.</p>
+</li>
+<li><p>Prevents frequent cache misses.</p>
+</li>
+</ul>
+<h3>Database Sharding</h3>
+<ul>
+<li>Helps in horizontal sharding by dynamically assigning data to different database partitions.</li>
+</ul>

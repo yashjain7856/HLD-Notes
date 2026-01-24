@@ -1,0 +1,101 @@
+<h1>Microservices</h1>
+<h2>Part 1: Introduction and Decomposition Pattern</h2>
+<h3>Introduction</h3>
+<ul>
+<li>This is part 3 of the video series on high-level design</li>
+<li>Previous 2 videos already covered</li>
+<li>This part covers:<ul>
+<li>Monolithic vs microservices</li>
+<li>Covering important microservices patterns</li>
+<li>Says this topic can lead to around 15 questions in interviews</li>
+</ul>
+</li>
+</ul>
+<h3>Disadvantages of Monolithic Architecture</h3>
+<ul>
+<li>IDE Overloading</li>
+<li>Tight Coupling<ul>
+<li>Changing one line can impact other components</li>
+<li>Need to test/deploy entire application for one change</li>
+</ul>
+</li>
+<li>Difficult to scale<ul>
+<li>If one component needs scaling, entire application needs to be scaled</li>
+</ul>
+</li>
+<li>Expensive deployments and rollbacks<ul>
+<li>Entire application needs redeployment for a small change</li>
+</ul>
+</li>
+<li>Large codebase<ul>
+<li>Everything in a single application</li>
+<li>Codebase grows large over time</li>
+<li>Difficult to make changes, understand impact</li>
+</ul>
+</li>
+</ul>
+<h3>Why Microservices?</h3>
+<ul>
+<li>To overcome monolithic disadvantages</li>
+<li>Split large application into small services</li>
+</ul>
+<h3>Advantages of Microservices</h3>
+<ul>
+<li>Better separation of concerns</li>
+<li>Loose coupling between services</li>
+<li>Independent deployment of services</li>
+<li>Easy to scale out specific services</li>
+<li>Faster release cycles</li>
+</ul>
+<h3>Disadvantages of Microservices</h3>
+<ul>
+<li>Proper service boundaries/decomposition is challenging</li>
+<li>Inter-service communication is complex<ul>
+<li>Monitoring calls across services</li>
+<li>Handling failures</li>
+</ul>
+</li>
+<li>Distributed transaction management is difficult<ul>
+<li>Across multiple databases</li>
+</ul>
+</li>
+</ul>
+<h3>Microservices Design Phases</h3>
+<ul>
+<li>Decomposition patterns<ul>
+<li>By business capability</li>
+<li>By subdomain - Domain Driven Design (DDD)</li>
+</ul>
+</li>
+<li>Database patterns<ul>
+<li>DB per service</li>
+<li>Shared DB</li>
+</ul>
+</li>
+<li>Communication patterns<ul>
+<li>via API</li>
+<li>via Events</li>
+</ul>
+</li>
+<li>Integration patterns<ul>
+<li>API gateways etc.</li>
+</ul>
+</li>
+<li>Deployment patterns</li>
+<li>Cross-cutting concerns like monitoring, logging, observability</li>
+</ul>
+<h3>Decomposition Patterns</h3>
+<ul>
+<li>By business capability<ul>
+<li>Split based on business functions like order mgmt, inventory, etc</li>
+<li>requires good business knowledge</li>
+</ul>
+</li>
+<li>By subdomain - Domain Driven Design (DDD)<ul>
+<li>Split large domains into multiple services<ul>
+<li>E.g. splitting payment domain into forward and refund payments</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>

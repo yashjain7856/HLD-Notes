@@ -1,0 +1,69 @@
+<h1>Scaling from zero to million users</h1>
+<h2>Introduction:</h2>
+<ul>
+<li>This video is part of a series on system design concepts, focusing on scaling from 0 users to 1 million users.</li>
+<li>Covers various concepts like sharding, horizontal and vertical scaling, load balancing, caching, and messaging queues.</li>
+</ul>
+<h2>Steps for Scaling:</h2>
+<ol>
+<li><strong>Single Server:</strong><ul>
+<li>Basic setup with a single server for the application, database, and client.</li>
+<li>Suitable for the initial stage with zero users.</li>
+</ul>
+</li>
+<li><strong>Application and Database Separation:</strong><ul>
+<li>Introduces a separate layer for the application server, handling business logic.</li>
+<li>Database server handles data storage and retrieval.</li>
+<li>Enables independent scaling of both application and database.</li>
+</ul>
+</li>
+<li><strong>Load Balancing and Multiple Application Servers:</strong><ul>
+<li>Introduces a load balancer to distribute incoming requests across multiple application servers.</li>
+<li>Load balancer provides security and privacy.</li>
+<li>Ensures efficient handling of increased traffic by distributing workload.</li>
+</ul>
+</li>
+<li><strong>Database Replication:</strong><ul>
+<li>Implements a master-slave configuration for the database.</li>
+<li>Master database handles write operations, while slave databases handle read operations.</li>
+<li>Improves performance and provides redundancy in case of database failure.</li>
+</ul>
+</li>
+<li><strong>Caching:</strong><ul>
+<li>Utilizes a caching layer to store frequently accessed data in memory.</li>
+<li>Application server checks the cache first before accessing the database.</li>
+<li>Reduces database load and improves response time.</li>
+<li>Uses time-to-live (TTL) to manage cached data expiry.</li>
+</ul>
+</li>
+<li><strong>Content Delivery Network (CDN):</strong><ul>
+<li>Uses a distributed network of servers to cache static content closer to users.</li>
+<li>Reduces latency and improves website performance for users worldwide.</li>
+<li>Handles requests for static content like images, videos, and JavaScript files.</li>
+<li>In case of cache miss, CDN first ask neighbour CDN for the data then from origin DB.</li>
+</ul>
+</li>
+<li><strong>Multiple Data Centers:</strong><ul>
+<li>Distributes the application and database across multiple data centers.</li>
+<li>Reduces load on individual data centers and improves reliability.</li>
+<li>Enables geographically distributed user access with minimal latency.</li>
+<li>Load balancer distributes requests to different data centers based on user location.</li>
+</ul>
+</li>
+<li><strong>Messaging Queues:</strong><ul>
+<li>Uses messaging queues to handle asynchronous tasks like sending notifications or emails.</li>
+<li>Decouples tasks from the main application flow.</li>
+<li>Improves performance and reliability by handling high-volume tasks efficiently.</li>
+<li>Utilizes messaging platforms like RabbitMQ or Kafka.</li>
+</ul>
+</li>
+<li><strong>Database Scaling:</strong><ul>
+<li><strong>Vertical Scaling:</strong> Increase the capacity of existing database servers (CPU, RAM). This has limitations and eventually reaches a ceiling.</li>
+<li><strong>Horizontal Scaling / Data Sharding :</strong> Split the database into multiple servers or shards, distributing data across them. This offers better scalability.<ul>
+<li>Splits data across multiple databases or tables based on a specific key.</li>
+<li>Can be implemented through vertical sharding (splitting columns) or horizontal sharding (splitting rows).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>

@@ -1,4 +1,4 @@
-# Microservices Design Patterns
+# Microservices
 ## Part 1: Introduction and Decomposition Pattern
 
 ### Introduction

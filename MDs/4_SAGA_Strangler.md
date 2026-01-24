@@ -1,5 +1,5 @@
-# Microservices Design Patterns
-## Part 1: Introduction and Decomposition Pattern
+# Microservices
+## Part 2: SAGA and Strangler Design Patterns
 
 ### Introduction
 
